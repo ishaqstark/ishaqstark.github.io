@@ -4,391 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H-Life Properties - Real Estate & Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #c9a969;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: #c9a969;
-        }
-
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: #c9a969;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(201, 169, 105, 0.3);
-            letter-spacing: 1px;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(201, 169, 105, 0.5);
-            background: #b89858;
-        }
-
-        section {
-            padding: 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-top: 4rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            padding: 0 2rem;
-        }
-
-        .services {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-        }
-
-        .service-card {
-            position: relative;
-            height: 450px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .service-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .service-card:hover .service-image {
-            transform: scale(1.1);
-        }
-
-        .service-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 3rem 2rem 2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #c9a969;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .portfolio {
-            padding: 4rem 0;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-        }
-
-        .portfolio-item {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .portfolio-item.large {
-            grid-column: span 2;
-            height: 600px;
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
-        }
-
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.05);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(201, 169, 105, 0.9), rgba(0, 0, 0, 0.8));
-            opacity: 0;
-            transition: opacity 0.4s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-overlay p {
-            font-size: 1.1rem;
-            max-width: 600px;
-        }
-
-        .stats {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            padding: 5rem 5%;
-            color: white;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #c9a969;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #c9a969, #8b7355);
-            padding: 5rem 5%;
-            text-align: center;
-            color: white;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .contact {
-            padding: 5rem 5%;
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #c9a969;
-        }
-
-        .contact-info p {
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-
-        .contact-details {
-            margin-top: 2rem;
-        }
-
-        .contact-details div {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-details span {
-            font-size: 1.5rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1.2rem;
-            border: 1px solid #333;
-            background: #2a2a2a;
-            color: white;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #c9a969;
-        }
-
-        .contact-form button {
-            padding: 1.2rem;
-            background: #c9a969;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .contact-form button:hover {
-            background: #b89858;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background: #0a0a0a;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -400,225 +17,301 @@
             }
         }
 
-        @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .fade-in-up {
+            animation: fadeInUp 1s ease;
+        }
 
-            .portfolio-item.large {
-                grid-column: span 1;
-            }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .services-grid,
-            .portfolio-grid,
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
+            .parallax {
+                background-attachment: scroll;
             }
         }
     </style>
 </head>
-<body>
-    <nav>
-        <div class="logo">H-<span>LIFE</span> PROPERTIES</div>
-        <ul class="nav-links">
-            <li><a href="#home">HOME</a></li>
-            <li><a href="#services">SERVICES</a></li>
-            <li><a href="#portfolio">PORTFOLIO</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
+<body class="font-sans text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-md z-50 shadow-xl">
+        <div class="container mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-xl lg:text-2xl font-bold text-white">
+                H-<span class="text-yellow-600">LIFE</span> PROPERTIES
+            </div>
+            
+            <!-- Hamburger Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="hamburger" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex gap-4 lg:gap-8 text-sm lg:text-base">
+                <li><a href="#home" class="text-white hover:text-yellow-600 transition">HOME</a></li>
+                <li><a href="#services" class="text-white hover:text-yellow-600 transition">SERVICES</a></li>
+                <li><a href="#portfolio" class="text-white hover:text-yellow-600 transition">PORTFOLIO</a></li>
+                <li><a href="#contact" class="text-white hover:text-yellow-600 transition">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95">
+            <ul class="flex flex-col items-center py-4 space-y-4">
+                <li><a href="#home" class="mobile-link text-white hover:text-yellow-600 transition text-lg">HOME</a></li>
+                <li><a href="#services" class="mobile-link text-white hover:text-yellow-600 transition text-lg">SERVICES</a></li>
+                <li><a href="#portfolio" class="mobile-link text-white hover:text-yellow-600 transition text-lg">PORTFOLIO</a></li>
+                <li><a href="#contact" class="mobile-link text-white hover:text-yellow-600 transition text-lg">CONTACT</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>H-LIFE PROPERTIES</h1>
-            <p>Where Vision Meets Construction Excellence</p>
-            <a href="#contact" class="cta-btn">START YOUR PROJECT</a>
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center text-center text-white parallax" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80');">
+        <div class="container mx-auto px-4 fade-in-up">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-wide">H-LIFE PROPERTIES</h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 opacity-95">Where Vision Meets Construction Excellence</p>
+            <a href="#contact" class="inline-block px-8 py-3 lg:px-12 lg:py-4 bg-yellow-600 text-white font-bold rounded hover:bg-yellow-700 transition transform hover:-translate-y-1 shadow-lg">
+                START YOUR PROJECT
+            </a>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Comprehensive solutions for all your property needs</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="Construction" class="service-image">
-                <div class="service-overlay">
-                    <h3>Construction</h3>
-                    <p>Building quality homes from foundation to finish with expert craftsmanship and attention to detail.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Real Estate" class="service-image">
-                <div class="service-overlay">
-                    <h3>Real Estate Sales</h3>
-                    <p>Find your dream property or sell with confidence through our experienced team.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" alt="Interior Design" class="service-image">
-                <div class="service-overlay">
-                    <h3>Interior Design</h3>
-                    <p>Transform spaces into beautiful, functional environments that reflect your unique style.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1503594384566-461fe158e797?w=800&q=80" alt="Planning" class="service-image">
-                <div class="service-overlay">
-                    <h3>Architectural Planning</h3>
-                    <p>Innovative designs that blend aesthetics with functionality for modern living.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&q=80" alt="Renovation" class="service-image">
-                <div class="service-overlay">
-                    <h3>Renovation</h3>
-                    <p>Breathe new life into existing spaces with complete renovation services.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80" alt="Property Management" class="service-image">
-                <div class="service-overlay">
-                    <h3>Property Management</h3>
-                    <p>Professional management services to maximize your investment returns.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Showcasing our commitment to excellence</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-item large">
-                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=80" alt="Modern Villa" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Luxury Modern Villa</h3>
-                    <p>5-bedroom contemporary masterpiece with stunning architectural design and premium finishes</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Residential Estate" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Residential Estate</h3>
-                    <p>Gated community with 50 modern homes</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" alt="Urban Development" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Urban Development</h3>
-                    <p>Mixed-use development in prime location</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" alt="Contemporary Home" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Contemporary Home</h3>
-                    <p>Modern family residence with open concept</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Luxury Interior" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Luxury Interior</h3>
-                    <p>Complete interior transformation</p>
-                </div>
-            </div>
-            <div class="portfolio-item large">
-                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80" alt="Architectural Marvel" class="portfolio-image">
-                <div class="portfolio-overlay">
-                    <h3>Architectural Marvel</h3>
-                    <p>Award-winning design combining innovation with sustainability</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Projects Completed</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1000+</div>
-                <div class="stat-label">Happy Clients</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Expert Team</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <h2>Ready to Build Your Dream?</h2>
-        <p>Let's turn your vision into reality</p>
-        <a href="#contact" class="cta-btn">GET IN TOUCH</a>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Let's Create Something Amazing</h3>
-                <p>Whether you're looking to build, buy, sell, or design, H-Life Properties is here to guide you every step of the way. Our team of experts is ready to bring your vision to life.</p>
-                <div class="contact-details">
-                    <div>
-                        <span>📍</span>
-                        <div>123 Construction Avenue, City</div>
+    <!-- Services Section -->
+    <section id="services" class="py-12 lg:py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">Our Services</h2>
+            <p class="text-center text-gray-600 mb-8 lg:mb-12 text-base lg:text-lg">Comprehensive solutions for all your property needs</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+                <!-- Service Card 1 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="Construction" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Construction</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Building quality homes from foundation to finish with expert craftsmanship.</p>
                     </div>
-                    <div>
-                        <span>📞</span>
-                        <div>+1 (555) 123-4567</div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Real Estate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Real Estate Sales</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Find your dream property or sell with confidence through our experienced team.</p>
                     </div>
-                    <div>
-                        <span>✉️</span>
-                        <div>info@hlifeproperties.com</div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" alt="Interior Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Interior Design</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Transform spaces into beautiful, functional environments.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1503594384566-461fe158e797?w=800&q=80" alt="Planning" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Architectural Planning</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Innovative designs that blend aesthetics with functionality.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&q=80" alt="Renovation" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Renovation</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Breathe new life into existing spaces with complete renovation services.</p>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80" alt="Property Management" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black to-transparent p-4 lg:p-6">
+                        <h3 class="text-xl lg:text-2xl font-bold text-yellow-600 mb-2">Property Management</h3>
+                        <p class="text-white text-sm lg:text-base opacity-90">Professional management services to maximize your investment returns.</p>
                     </div>
                 </div>
             </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <textarea rows="5" placeholder="Tell us about your project..." required></textarea>
-                <button type="submit">SEND MESSAGE</button>
-            </form>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 H-Life Properties. All rights reserved. Building Dreams, Creating Homes.</p>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-12 lg:py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">Featured Projects</h2>
+            <p class="text-center text-gray-600 mb-8 lg:mb-12 text-base lg:text-lg">Showcasing our commitment to excellence</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <!-- Large Portfolio Item 1 -->
+                <div class="relative h-64 md:h-96 lg:h-[600px] md:col-span-2 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=80" alt="Modern Villa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 lg:p-8 text-center">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 lg:mb-4">Luxury Modern Villa</h3>
+                        <p class="text-sm md:text-base lg:text-lg max-w-2xl">5-bedroom contemporary masterpiece with stunning architectural design and premium finishes</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Residential Estate" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 text-center">
+                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-2">Residential Estate</h3>
+                        <p class="text-sm md:text-base">Gated community with 50 modern homes</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" alt="Urban Development" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 text-center">
+                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-2">Urban Development</h3>
+                        <p class="text-sm md:text-base">Mixed-use development in prime location</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" alt="Contemporary Home" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 text-center">
+                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-2">Contemporary Home</h3>
+                        <p class="text-sm md:text-base">Modern family residence with open concept</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Luxury Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 text-center">
+                        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-2">Luxury Interior</h3>
+                        <p class="text-sm md:text-base">Complete interior transformation</p>
+                    </div>
+                </div>
+
+                <!-- Large Portfolio Item 2 -->
+                <div class="relative h-64 md:h-96 lg:h-[600px] md:col-span-2 overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80" alt="Architectural Marvel" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black opacity-0 group-hover:opacity-90 transition-opacity duration-400 flex items-center justify-center flex-col text-white p-4 lg:p-8 text-center">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 lg:mb-4">Architectural Marvel</h3>
+                        <p class="text-sm md:text-base lg:text-lg max-w-2xl">Award-winning design combining innovation with sustainability</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 lg:py-20 text-white parallax" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80');">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 max-w-6xl mx-auto">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-600 mb-2">500+</div>
+                    <div class="text-sm md:text-base lg:text-lg opacity-90">Projects Completed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-600 mb-2">1000+</div>
+                    <div class="text-sm md:text-base lg:text-lg opacity-90">Happy Clients</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-600 mb-2">15+</div>
+                    <div class="text-sm md:text-base lg:text-lg opacity-90">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-600 mb-2">50+</div>
+                    <div class="text-sm md:text-base lg:text-lg opacity-90">Expert Team</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 lg:py-20 bg-gradient-to-r from-yellow-600 to-yellow-800 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Ready to Build Your Dream?</h2>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 opacity-95">Let's turn your vision into reality</p>
+            <a href="#contact" class="inline-block px-8 py-3 lg:px-12 lg:py-4 bg-white text-yellow-600 font-bold rounded hover:bg-gray-100 transition transform hover:-translate-y-1 shadow-lg">
+                GET IN TOUCH
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 lg:py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-600 mb-4">Let's Create Something Amazing</h3>
+                    <p class="mb-6 lg:mb-8 opacity-90 leading-relaxed text-sm md:text-base">Whether you're looking to build, buy, sell, or design, H-Life Properties is here to guide you every step of the way. Our team of experts is ready to bring your vision to life.</p>
+                    
+                    <div class="space-y-4 lg:space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl md:text-3xl">📍</span>
+                            <div class="text-sm md:text-base">123 Construction Avenue, City</div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl md:text-3xl">📞</span>
+                            <div class="text-sm md:text-base">+1 (555) 123-4567</div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl md:text-3xl">✉️</span>
+                            <div class="text-sm md:text-base">info@hlifeproperties.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="space-y-4 lg:space-y-6">
+                    <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 lg:px-6 lg:py-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:border-yellow-600 transition text-sm md:text-base">
+                    <input type="email" placeholder="Your Email" required class="w-full px-4 py-3 lg:px-6 lg:py-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:border-yellow-600 transition text-sm md:text-base">
+                    <input type="tel" placeholder="Phone Number" required class="w-full px-4 py-3 lg:px-6 lg:py-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:border-yellow-600 transition text-sm md:text-base">
+                    <textarea rows="5" placeholder="Tell us about your project..." required class="w-full px-4 py-3 lg:px-6 lg:py-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:border-yellow-600 transition text-sm md:text-base"></textarea>
+                    <button type="submit" class="w-full px-6 py-3 lg:px-8 lg:py-4 bg-yellow-600 text-white font-bold rounded hover:bg-yellow-700 transition transform hover:-translate-y-1 text-sm md:text-base">
+                        SEND MESSAGE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white text-center py-6 lg:py-8">
+        <p class="text-sm md:text-base">&copy; 2024 H-Life Properties. All rights reserved. Building Dreams, Creating Homes.</p>
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger');
+        const closeIcon = document.getElementById('close');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburger.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -632,7 +325,8 @@
             });
         });
 
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for reaching out! We will contact you shortly.');
             this.reset();
